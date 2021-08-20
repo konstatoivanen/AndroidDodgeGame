@@ -28,13 +28,6 @@ struct shader_source
     const char* source;
 };
 
-struct matrix_trail_32
-{
-    float4x4 matrices[32];
-    int head;
-    int length;
-};
-
 struct graphics_context
 {
     const mesh* active_mesh = nullptr;
@@ -74,5 +67,3 @@ void draw_mesh(graphics_context* context, const mesh* mesh, const float4x4& matr
 void draw_mesh(graphics_context* context, const mesh* mesh, const shader* shader);
 
 void draw_mesh(graphics_context* context, const mesh* mesh, const shader* shader, const float4x4& matrix);
-
-void draw_mesh(graphics_context* context, const mesh* mesh, const shader* shader, matrix_trail_32* trail, const float4x4& matrix, int maxlength);

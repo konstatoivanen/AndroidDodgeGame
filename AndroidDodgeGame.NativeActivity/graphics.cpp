@@ -351,34 +351,3 @@ void draw_mesh(graphics_context* context, const mesh* mesh, const shader* shader
 	set_pass(context, shader);
 	draw_mesh(context, mesh, matrix);
 }
-
-void draw_mesh(graphics_context* context, const mesh* mesh, const shader* shader, matrix_trail_32* trail, const float4x4& matrix, int maxlength)
-{
-	trail->head++;
-	
-	if (trail->head >= 32)
-	{
-		trail->head = 0;
-	}
-
-	trail->matrices[trail->head] = matrix;
-
-	trail->length++;
-	trail->length = trail->length > 32 ? 32 : trail->length;
-	trail->length = trail->length > maxlength ? maxlength : trail->length;
-
-	if (trail->length <= 0)
-	{
-		return;
-	}
-
-	for (int i = 0, j = trail->head; i < trail->length; ++i, --j)
-	{
-		if (j < 0)
-		{
-			j = 31;
-		}
-
-		draw_mesh(context, mesh, shader, trail->matrices[j]);
-	}
-}
