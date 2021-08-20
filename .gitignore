@@ -83,3 +83,9 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# Build Folders
+**/x64
+**/x86
+**/ARM
+**/.vs
